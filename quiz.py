@@ -33,18 +33,29 @@ te_reo_quiz = [
     {"question": "Wāhine means boy.", "answer": False},
     {"question": "Ika means fish.", "answer": True},
     {"question": "Aroha means love.", "answer": True},
-    {"question": "Ngahere means ocean.", "answer": False},
     {"question": "Kōrero means to speak.", "answer": True},
 ]
 
 
 quescount = 0 #WHAT question the user is up to
 score = 0 #the users current score
+def playquestion():
+    if quescount < len(te_reo_quiz):
+        queslabel.config(text=te_reo_quiz[quescount]["question"])
+    else:
+        messagebox.showinfo("Quiz done", f"Your score: {score} / {len(te_reo_quiz)}")
+        root.destroy()
 
+
+
+#belowq here is the actual parts of the quiz that arent functions
 root = tk.Tk()
-root.title("Te Reo Māori Quiz")
-root.geometry("400x200")
+root.title("Te Reo Māori quiz")
+root.geometry("800x400")
+
+queslabel = tk.Label(root, text="", wraplength=380, font=("Arial", 14))
+queslabel.pack(pady=20)
 
 
-
+playquestion()
 root.mainloop()
