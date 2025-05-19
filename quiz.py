@@ -36,6 +36,9 @@ te_reo_quiz = [
     {"question": "Kōrero means to speak.", "answer": True},
 ]
 
+def add_quescount():
+    global quescount
+    quescount += 1
 
 quescount = 0 #WHAT question the user is up to
 score = 0 #the users current score
@@ -53,8 +56,23 @@ root = tk.Tk()
 root.title("Te Reo Māori quiz")
 root.geometry("800x400")
 
+
+true = tk.Button(root, height=2, width=3,
+    text='true', 
+    command=add_quescount
+)
+true.place(x=200, y=200)
+false = tk.Button(root, height=2, width=3,
+    text='false', 
+    command=add_quescount
+)
+false.place(x=600, y=200)
+
+
+
 queslabel = tk.Label(root, text="", wraplength=380, font=("Arial", 14))
 queslabel.pack(pady=20)
+
 
 
 playquestion()
