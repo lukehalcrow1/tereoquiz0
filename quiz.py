@@ -57,16 +57,18 @@ root.title("Te Reo Māori quiz")
 root.geometry("800x400")
 
 
-true = tk.Button(root, height=2, width=3,
+true = tk.Button(root, height=3, width=8,
     text='true', 
-    command=add_quescount
+    command=add_quescount,
+    bg = 'lawn green'
 )
-true.place(x=200, y=200)
-false = tk.Button(root, height=2, width=3,
+true.place(x=250, y=200)
+false = tk.Button(root, height=3, width=8,
     text='false', 
-    command=add_quescount
+    command=add_quescount,
+    background ='red'
 )
-false.place(x=600, y=200)
+false.place(x=500, y=200)
 
 
 
