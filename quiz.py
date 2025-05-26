@@ -56,10 +56,14 @@ root = tk.Tk()
 root.title("Te Reo Māori quiz")
 root.geometry("800x400")
 
+def trueclicked():
+    add_quescount()
+    if 'answer' == True:
+        print('yo')
 
 true = tk.Button(root, height=3, width=8,
-    text='true', 
-    command=add_quescount,
+    text='true',
+    command=trueclicked,
     bg = 'lawn green'
 )
 true.place(x=250, y=200)
