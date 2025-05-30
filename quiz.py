@@ -1,3 +1,4 @@
+#Luke Halcrow 22156@nayland.school.nz
 
 import tkinter as tk #this makes it so i can use tkinter
 from tkinter import messagebox
@@ -43,7 +44,7 @@ quescount = 0 #WHAT question the user is up to
 score = 0 #the users current score
 def playquestion():
     if quescount < len(te_reo_quiz):
-        queslabel.config(text=te_reo_quiz[quescount]["question"])
+        queslabel.config(text=te_reo_quiz[quescount]["question"], fg= "white")
     else:
         messagebox.showinfo("Quiz done", f"Your score: {score} / {len(te_reo_quiz)}")
         root.destroy()
@@ -54,6 +55,7 @@ def playquestion():
 root = tk.Tk()
 root.title("Te Reo quiz")
 root.geometry("800x400")
+root.config(bg= "gray22")
 
 def check(useranswer: bool):
     global quescount, score
@@ -61,26 +63,27 @@ def check(useranswer: bool):
     if useranswer == correct_answer:
         score += 1
     quescount += 1
-    print(score)
     playquestion()
 
 
-true = tk.Button(root, height=3, width=8,
-    text='true',
+true = tk.Button(root, 
+    text='True',
     command=lambda: check(True),
-    bg = 'lawn green'
+    font=("BirchStd", 16),
+    bg = 'green', fg= "white"
 )
-true.place(relx=0.25, rely=0.5, anchor = "w")
-false = tk.Button(root, height=3, width=8,
-    text='false', 
+true.place(relx=0.25, rely=0.5, anchor = "w", relheight=0.2, relwidth=0.15,)
+false = tk.Button(root, 
+    text='False', 
     command=lambda: check(False),
-    background ='red'
+    font=("BirchStd", 16),
+    background ='red', fg= "white"
 )
-false.place(relx=0.75, rely=0.5, anchor = "e")
+false.place(relx=0.75, rely=0.5, anchor = "e", relheight=0.2, relwidth=0.15,)
 
 
 
-queslabel = tk.Label(root, text="", wraplength=380, font=("Arial", 14))
+queslabel = tk.Label(root, text="", wraplength=380, font=("BirchStd"), bg= "gray22")
 queslabel.pack(pady=20)
 
 
