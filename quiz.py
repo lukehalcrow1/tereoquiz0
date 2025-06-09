@@ -1,10 +1,10 @@
 #Luke Halcrow 22156@nayland.school.nz
 
-import tkinter as tk #this makes it so i can use tkinter
+import tkinter as tk #this makes it so i can use tkinter and as tk makes it easyer on line 57 and 75 and so on
 from tkinter import messagebox #lets me use messege boxes in my code which make up alot of it
 #this is my list of all the questions with the question and the answer
-te_reo_quiz = [
-    {"question": "Welcome, read the statement and click your answer,like this:\n 'You want to start the Quiz' ", "answer": True},# this one is the stating screen so ity askes the player what they want to do this is user freedom
+te_reo_quiz = [ # this is a list of dictionarys with the keys being question and answer
+    {"question": "Welcome,\n click true to start. ", "answer": True},# this one is the stating screen so ity askes the player what they want to do this is user freedom
     {"question": "Kai is the Māori word for water.", "answer": False},
     {"question": "Whānau means family.", "answer": True},
     {"question": "Moana is the Māori word for river.", "answer": False},
@@ -44,42 +44,41 @@ def playquestion():# this defines the playquestion function
         queslabel.config(text=te_reo_quiz[quescount]["question"], fg= "white") #this sets the question text as the question thats current
     else:
         if score >= 25:    # if the users score is above 25 they pass
-            messagebox.showinfo("Quiz done", f"Your score: {score} / '30" "\n You passed!") #tells them they pass 
-            root.destroy()
+            messagebox.showinfo("Quiz done", f"Your score: {score} / 30" "\n You passed!") #tells them they pass 
+            root.destroy()# ends quiz when anthing is clicked
         else:
-            messagebox.showinfo("Quiz done", f"Your score: {score} / 30" "\n You did not pass.")
+            messagebox.showinfo("Quiz done", f"Your score: {score} / 30" "\n You did not pass.")# tells them they fail in info box
             root.destroy()
             
-
+def check(useranswer: bool): #this runs the function with the argument of the answer in boolean form (true or false)
+    global quescount, score #lets function change and see these variables
+    if quescount ==0 and useranswer == False: #when false is clicked on the first question
+        root.destroy() # closes the quiz
+        return #ends function as is
+    if quescount >=1: #after the intro score can be taken
+        correct_answer = te_reo_quiz[quescount]["answer"] #compares question answer to answer in dictionary
+        if useranswer == correct_answer: 
+            score += 1 #ads score
+    quescount += 1
+    playquestion() #makes the next question play
 
 
 #belowq here is the actual parts of the quiz that arent functions
-root = tk.Tk()
-root.title("Te Reo quiz")
-root.geometry("1200x600")
-root.config(bg= "gray22")
-
-def check(useranswer: bool):
-    global quescount, score
-    if quescount ==0 and useranswer == False:
-        root.destroy()
-        return
-    if quescount > 1:
-        correct_answer = te_reo_quiz[quescount]["answer"]
-        if useranswer == correct_answer:
-            score += 1
-    quescount += 1
-    playquestion()
+root = tk.Tk() # Uses tkinter to make a box 
+root.title("Te Reo quiz") #sets title of box
+root.geometry("1200x600")# sets height and width of box
+root.config(bg= "gray22") #sets colour of box at the right grey
 
 
-true = tk.Button(root, 
+
+true = tk.Button(root, # makes true button
     text='True',
-    command=lambda: check(True),
+    command=lambda: check(True), #the lamda allows function to be called from button with the argument of true of false
     font=("fixedsys", 16),
-    bg = 'green', fg= "white"
+    bg = 'green', fg= "white" #green button white font
 )
-true.place(relx=0.25, rely=0.5, anchor = "w", relheight=0.2, relwidth=0.15,)
-false = tk.Button(root, 
+true.place(relx=0.25, rely=0.5, anchor = "w", relheight=0.2, relwidth=0.15,) #sets dimentions and positioning reletive to size of window with 'west' or w to set to the left
+false = tk.Button(root, #all the code is the same exept the colours and posistions
     text='False', 
     command=lambda: check(False),
     font=("fixedsys", 16),
@@ -89,10 +88,10 @@ false.place(relx=0.75, rely=0.5, anchor = "e", relheight=0.2, relwidth=0.15,)
 
 
 
-queslabel = tk.Label(root, text="", wraplength=380, font=("fixedsys", 20), bg= "gray22")
-queslabel.pack(pady=20)
+queslabel = tk.Label(root, text="", wraplength=380, font=("fixedsys", 20), bg= "gray22") #makes the label of the main window and sets font, size ,and colour
+queslabel.pack(pady=20) #adds padding so text stays away from top edge
 
 
 
-playquestion()
-root.mainloop()
+playquestion() #starts quiz by running first question
+root.mainloop() #keeps window open
