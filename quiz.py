@@ -37,11 +37,11 @@ te_reo_quiz = [ # this is a list of dictionarys with the keys being question and
     {"question": "Kōrero means to speak.", "answer": True},
 ]
 
-quescount = 0 #WHAT question the user is up to at zero to start
+question_count = 0 #WHAT question the user is up to at zero to start
 score = 0 #the users current score as 0 to start
-def playquestion():# this defines the playquestion function
-    if quescount < len(te_reo_quiz):# this checks if the user is still in the quiz by comparing the length to the quescount
-        queslabel.config(text=te_reo_quiz[quescount]["question"], fg= "white") #this sets the question text as the question thats current
+def play_question():# this defines the playquestion function
+    if question_count < len(te_reo_quiz):# this checks if the user is still in the quiz by comparing the length to the question_count
+        question_label.config(text=te_reo_quiz[question_count]["question"], fg= "white") #this sets the question text as the question thats current
     else:
         if score >= 25:    # if the users score is above 25 they pass
             messagebox.showinfo("Quiz done", f"Your score: {score} / 30" "\n You passed!") #tells them they pass 
@@ -50,17 +50,17 @@ def playquestion():# this defines the playquestion function
             messagebox.showinfo("Quiz done", f"Your score: {score} / 30" "\n You did not pass.")# tells them they fail in info box
             root.destroy()
             
-def check(useranswer: bool): #this runs the function with the argument of the answer in boolean form (true or false)
-    global quescount, score #lets function change and see these variables
-    if quescount ==0 and useranswer == False: #when false is clicked on the first question
+def check(user_answer: bool): #this runs the function with the argument of the answer in boolean form (true or false)
+    global question_count, score #lets function change and see these variables
+    if question_count ==0 and user_answer == False: #when false is clicked on the first question
         root.destroy() # closes the quiz
         return #ends function as is
-    if quescount >=1: #after the intro score can be taken
-        correct_answer = te_reo_quiz[quescount]["answer"] #compares question answer to answer in dictionary
-        if useranswer == correct_answer: 
+    if question_count >=1: #after the intro score can be taken
+        correct_answer = te_reo_quiz[question_count]["answer"] #compares question answer to answer in dictionary
+        if user_answer == correct_answer: 
             score += 1 #ads score
-    quescount += 1
-    playquestion() #makes the next question play
+    question_count += 1
+    play_question() #makes the next question play
 
 
 #belowq here is the actual parts of the quiz that arent functions
@@ -88,10 +88,10 @@ false.place(relx=0.75, rely=0.5, anchor = "e", relheight=0.2, relwidth=0.15,)
 
 
 
-queslabel = tk.Label(root, text="", wraplength=380, font=("fixedsys", 20), bg= "gray22") #makes the label of the main window and sets font, size ,and colour
-queslabel.pack(pady=20) #adds padding so text stays away from top edge
+question_label = tk.Label(root, text="", wraplength=380, font=("fixedsys", 20), bg= "gray22") #makes the label of the main window and sets font, size ,and colour
+question_label.pack(pady=20) #adds padding so text stays away from top edge
 
 
 
-playquestion() #starts quiz by running first question
+play_question() #starts quiz by running first question
 root.mainloop() #keeps window open
