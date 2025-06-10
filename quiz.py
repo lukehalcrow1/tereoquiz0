@@ -4,7 +4,8 @@ import tkinter as tk #this makes it so i can use tkinter and as tk makes it easy
 from tkinter import messagebox #lets me use messege boxes in my code which make up alot of it
 #this is my list of all the questions with the question and the answer
 te_reo_quiz = [ # this is a list of dictionarys with the keys being question and answer
-    {"question": "Welcome,\n click true to start. ", "answer": True},# this one is the stating screen so ity askes the player what they want to do this is user freedom
+    {"question": "Welcome,\n click true to start. ", "answer": True},
+# this one is the stating screen so ity askes the player what they want to do this is user freedom
     {"question": "Kai is the Māori word for water.", "answer": False},
     {"question": "Whānau means family.", "answer": True},
     {"question": "Moana is the Māori word for river.", "answer": False},
@@ -41,14 +42,17 @@ question_count = 0 #WHAT question the user is up to at zero to start
 score = 0 #the users current score as 0 to start
 def play_question():
     """ this defines the playquestion function"""
-    if question_count < len(te_reo_quiz):# this checks if the user is still in the quiz by comparing the length to the question_count
-        question_label.config(text=te_reo_quiz[question_count]["question"], fg= "white") #this sets the question text as the question thats current
+    if question_count < len(te_reo_quiz):
+# this checks if the user is still in the quiz by comparing the length to the question_count
+        question_label.config(text=te_reo_quiz[question_count]["question"],
+ fg= "white") #this sets the question text as the question thats current
     else:
         if score >= 25:    # if the users score is above 25 they pass
             messagebox.showinfo("Quiz done", f"Your score: {score} / 30" "\n You passed!") #tells them they pass 
             root.destroy()# ends quiz when anthing is clicked
         else:
-            messagebox.showinfo("Quiz done", f"Your score: {score} / 30" "\n You did not pass.")# tells them they fail in info box
+            messagebox.showinfo("Quiz done", f"Your score: {score} / 30" "\n You did not pass.")
+# tells them they fail in info box
             root.destroy()
             
 def check(user_answer: bool):
@@ -79,7 +83,8 @@ true = tk.Button(root, # makes true button
     font=("fixedsys", 16),
     bg = 'green', fg= "white" #green button white font
 )
-true.place(relx=0.25, rely=0.5, anchor = "w", relheight=0.2, relwidth=0.15,) #sets dimentions and positioning reletive to size of window with 'west' or w to set to the left
+true.place(relx=0.25, rely=0.5, anchor = "w", relheight=0.2, relwidth=0.15,) 
+#sets dimentions and positioning reletive to size of window with 'west' or w to set to the left
 false = tk.Button(root, #all the code is the same exept the colours and posistions
     text='False', 
     command=lambda: check(False),
@@ -90,7 +95,8 @@ false.place(relx=0.75, rely=0.5, anchor = "e", relheight=0.2, relwidth=0.15,)
 
 
 
-question_label = tk.Label(root, text="", wraplength=380, font=("fixedsys", 20), bg= "gray22") #makes the label of the main window and sets font, size ,and colour
+question_label = tk.Label(root, text="", wraplength=380, font=("fixedsys", 20), bg= "gray22") 
+#makes the label of the main window and sets font, size ,and colour
 question_label.pack(pady=20) #adds padding so text stays away from top edge
 
 
