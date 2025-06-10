@@ -39,7 +39,8 @@ te_reo_quiz = [ # this is a list of dictionarys with the keys being question and
 
 question_count = 0 #WHAT question the user is up to at zero to start
 score = 0 #the users current score as 0 to start
-def play_question():# this defines the playquestion function
+def play_question():
+    """ this defines the playquestion function"""
     if question_count < len(te_reo_quiz):# this checks if the user is still in the quiz by comparing the length to the question_count
         question_label.config(text=te_reo_quiz[question_count]["question"], fg= "white") #this sets the question text as the question thats current
     else:
@@ -50,7 +51,8 @@ def play_question():# this defines the playquestion function
             messagebox.showinfo("Quiz done", f"Your score: {score} / 30" "\n You did not pass.")# tells them they fail in info box
             root.destroy()
             
-def check(user_answer: bool): #this runs the function with the argument of the answer in boolean form (true or false)
+def check(user_answer: bool):
+    """this runs the function with the argument of the answer in boolean form (true or false)"""
     global question_count, score #lets function change and see these variables
     if question_count ==0 and user_answer == False: #when false is clicked on the first question
         root.destroy() # closes the quiz
